@@ -1,0 +1,54 @@
+---
+import type { MarkdownLayoutProps } from 'astro';
+import Layout from '../layouts/Layout.astro';
+import logoRef from '../assets/logo.svg';
+
+type Props = MarkdownLayoutProps<{
+    title: string;
+}>;
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+    <svg class="logo">
+        <use {...{ 'xlink:href': `${logoRef}#logo` }}></use>
+    </svg>
+
+    <p>
+        <i>ActivityPub-federated microblogging</i>
+    </p>
+
+    <main>
+        <slot />
+    </main>
+</Layout>
+
+<style lang="scss" is:global>
+    @use '../styles/colours' as *;
+
+    fieldset {
+        margin-bottom: 20px;
+
+        & legend {
+            color: $shade2light;
+            padding: 0 10px;
+            font-size: x-large;
+            text-shadow: 0 0 5px $shade2light;
+        }
+    }
+</style>
+
+<style lang="scss">
+    @use '../styles/colours' as *;
+
+    .logo {
+        width: 60%;
+        color: $shade2light;
+        filter: drop-shadow(0 0 5px $shade2light);
+    }
+
+    main {
+        line-height: 1.4em;
+    }
+</style>

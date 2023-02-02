@@ -1,0 +1,67 @@
+---
+export interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>
+
+<style lang="scss" is:global>
+    @use '../styles/blockzone' as *;
+    @use '../styles/colours' as *;
+
+    html {
+        font-family: 'BlockZone';
+        background: radial-gradient($dark1, black 120%);
+        color: white;
+        text-shadow: 0 0 5px white;
+        font-size: large;
+    }
+
+    html::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: repeating-linear-gradient(
+            0deg,
+            rgba(black, 0.15),
+            rgba(black, 0.15) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+        pointer-events: none;
+    }
+
+    body {
+        margin: auto;
+        padding: 1.5rem;
+        max-width: 70ch;
+    }
+
+    a {
+        color: $shade1dark;
+        text-shadow: 0 0 5px $shade1dark;
+    }
+
+    a:hover {
+        color: $shade1light;
+        text-shadow: 0 0 5px $shade1light;
+    }
+</style>
