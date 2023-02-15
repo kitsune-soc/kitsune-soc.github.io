@@ -1,7 +1,7 @@
 ---
 import type { MarkdownLayoutProps } from 'astro';
 import Layout from '../layouts/Layout.astro';
-import logoRef from '../assets/logo.svg';
+import Logo from '../components/Logo.astro';
 
 type Props = MarkdownLayoutProps<{
     title: string;
@@ -11,13 +11,14 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title}>
-    <svg class="logo">
-        <use {...{ 'xlink:href': `${logoRef}#logo` }}></use>
-    </svg>
-
-    <p>
-        <i>ActivityPub-federated microblogging</i>
-    </p>
+    <Logo />
+    <header class="link-list">
+        <a href="/"> Home</a>
+        <a href="/installation"> Installation</a>
+        <a target="_blank" href="https://github.com/kitsune-soc/kitsune">
+            Source Code
+        </a>
+    </header>
 
     <main>
         <slot />
@@ -40,15 +41,13 @@ const { frontmatter } = Astro.props;
 </style>
 
 <style lang="scss">
-    @use '../styles/colours' as *;
-
-    .logo {
-        max-width: 100%;
-        color: $shade2light;
-        filter: drop-shadow(0 0 5px $shade2light);
+    .link-list {
+        display: flex;
+        gap: 1em;
     }
 
     main {
         line-height: 1.4em;
+        margin-top: 1rem;
     }
 </style>
