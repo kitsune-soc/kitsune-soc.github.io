@@ -6,8 +6,40 @@ title: 'Installation - Kitsune'
 <fieldset>
 <legend>Installation</legend>
 
-[TODO]
+This guide will only go over the Docker-based installation for now.
 
-(There are some rudimentary instructions in the project README, but nothing good yet)
+1. Clone the repository
+2. Build the two Dockerfiles in the repository. Make sure you use the `Dockerfile.prod` versions, the other version produced slower debug builds.
+
+    1. Navigate into the `kitsune` subdirectory and run `docker build -t kitsune -f Dockerfile.prod .` to build the main server
+    2. Navigate into the `kitsune-search` subdirectory and run `docker build -t kitsune-search -f Dockerfile.prod .` to build the search server
+
+3. Now that your Docker images are built, all you have to do is to run `docker compose up` to boot up a Kitsune instance
+
+The instance will listen on port 5000 by default.
+
+## Setting up TLS
+
+You want to run Kitsune behind a reverse proxy that handles the TLS termination.
+
+> We, in fact, don't support running the server without TLS support at all. All the ActivityPub resources contain URLs using the `https://` scheme.
+
+[Caddy](https://caddyserver.com/v2) is a good choice for this, since it's easily configured and automatically handles certificate renewals.
+
+Follow Caddy's official guides on how to install the server.  
+Depending on what installation method you chose, the Caddyfile has to be put into a different place.
+
+A basic Caddyfile that should get your server up and running should look something like this:
+
+```
+[your domain here] {
+	reverse_proxy localhost:5000
+}
+```
+
+Then start Caddy using the Caddyfile you just created as the configuration and done!  
+Kitsune is now running on your server with an automatically renewing TLS certificate.
+
+> **Note**: There is a lot more to securing your server than just adding TLS support, but this is out of the scope of this guide.
 
 </fieldset>
