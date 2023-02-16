@@ -14,7 +14,8 @@ This guide will only go over the Docker-based installation for now.
     1. Navigate into the `kitsune` subdirectory and run `docker build -t kitsune -f Dockerfile.prod .` to build the main server
     2. Navigate into the `kitsune-search` subdirectory and run `docker build -t kitsune-search -f Dockerfile.prod .` to build the search server
 
-3. Now that your Docker images are built, all you have to do is to run `docker compose up` to boot up a Kitsune instance
+3. Configure the environment variables inside the `docker-compose.yml` to your liking (make 100% sure that you changed the `DOMAIN` value to your domain!)
+4. All you have to do now is to run `docker compose up` to boot up the Kitsune instance
 
 The instance will listen on port 5000 by default.
 
