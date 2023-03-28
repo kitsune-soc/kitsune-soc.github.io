@@ -23,5 +23,5 @@ export default defineConfig({
             },
         }),
     ],
-    site: 'https://kitsune-soc.github.io',
+    site: 'https://joinkitsune.org',
 });
