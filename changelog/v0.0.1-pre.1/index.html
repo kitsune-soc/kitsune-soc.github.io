@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" id="oranda" class="hacker">
+  <head>
+    <title>Kitsune</title>
+    
+    
+      <link rel="icon" href="/favicon.ico" />
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kitsune" />
+    
+    
+    
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+    <link rel="stylesheet" href="/oranda-v0.6.1.css" />
+    
+      <link rel="stylesheet" href="/custom.css" />
+    
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-body">
+        
+          <div class="repo_banner">
+            <a href="https://github.com/kitsune-soc/kitsune">
+              <div class="github-icon" aria-hidden="true"></div>
+              Check out our GitHub!
+            </a>
+          </div>
+        
+
+        <main>
+          <header>
+            
+            <h1 class="title">Kitsune</h1>
+            
+  <nav class="nav">
+    <ul>
+      <li><a href="/">Home</a></li>
+
+      
+
+      
+        <li><a href="/artifacts/">Install</a></li>
+      
+
+      
+        <li><a href="/book/">Docs</a></li>
+      
+
+      
+        <li><a href="/funding/">Funding</a></li>
+      
+
+      
+        <li><a href="/changelog/">Changelog</a></li>
+      
+    </ul>
+  </nav>
+
+          </header>
+
+          
+  <div>
+    <h1>v0.0.1-pre.1: Second alpha pre-release </h1>
+    <div class="releases-body">
+      
+      
+      <section class="release pre-release ">
+  
+  <div class="release-info">
+    <span class="flex items-center gap-2">
+      <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>
+    <path stroke-linecap='round' stroke-linejoin='round' d='M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z' />
+    <path stroke-linecap='round' stroke-linejoin='round' d='M6 6h.008v.008H6V6z' /></svg>
+      v0.0.1-pre.1
+    </span>
+    <span class="flex items-center gap-2">
+      
+        <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'><path stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5' /></svg>
+        Jun  1 2023 at 20:19 UTC
+      
+    </span>
+  </div>
+  <div class="release-body">
+    <p>This release doesn't have too many new features (sorry, I've been a bit busy the last few weeks) and mostly changes the internals and fixes bugs.<br>
+Onto a third (hopefully more featureful) release! 🎉</p>
+<p>Feel free to join our <a href="https://matrix.to/#/#kitsune-space:matrix.org" rel="noopener noreferrer">Matrix room</a> to chat. We also hold votes there for larger changes (such as foregoing the SQLite support or the switch of our ORM)</p>
+<h2>Highlights</h2>
+<h3>Improved SQL search</h3>
+<p>The SQL search is now actually good, faster, and will scale better!</p>
+<p>It uses PostgreSQL's integrated support for full-text search via <code>tsvector</code>/<code>tsquery</code> and stores the generated vectors into GIN indices.<br>
+This more advanced usage of database-specific features (as well as a vote in our Matrix room towards foregoing SQLite support) led to the deprecation of the SQLite support, effective immediately.<br>
+Kitsune will not work with SQLite from this release onwards and it is unlikely to change (unless someone is willing to put in the work to make <code>diesel-async</code> compatible and figure out migrations and dynamic database connection switching).</p>
+<h3>Profiles are now updatable!</h3>
+<p>Standard profiles are a little boring. This update adds support for Mastodon's update for updating your account.<br>
+This includes:</p>
+<ul>
+<li>Setting a display name</li>
+<li>Setting a header</li>
+<li>Setting a profile picture</li>
+<li>Setting a description</li>
+<li>Locking your account</li>
+</ul>
+<p>These things all federate to other instances like they would on Mastodon.</p>
+<h3>Support for Ed25519 in HTTP signatures</h3>
+<p>We introduce support for Ed25519 signed HTTP request in this release. We see this as an important step of the fediverse towards deprecating RSA signatures (which they rightfully deserve) and moving to more modern standards.</p>
+<p>Currently we aren't aware of any other implementations that support Ed25519, therefore Kitsune has not fully switched to them yet. This is planned however as soon as a stable Mastodon release gets support for Ed25519 signatures.</p>
+<hr>
+<p>This release has incompatible database changes to the previous release.<br>
+Until we publish a full first alpha, we reserve us the right to continue making these kinds of breaking changes.</p>
+<hr>
+<p>Now follows the GitHub auto-generated changelog:</p>
+<h2>What's Changed</h2>
+<ul>
+<li>Bump h2 from 0.3.16 to 0.3.17 by @dependabot in <a href="https://github.com/kitsune-soc/kitsune/pull/173" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/173</a></li>
+<li>Add badges to the README by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/174" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/174</a></li>
+<li>Fix Matrix link in README by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/176" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/176</a></li>
+<li>Update dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/175" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/175</a></li>
+<li>Support Ed25519 HTTP signatures by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/177" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/177</a></li>
+<li>Add support for Mastodon's update profile API by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/178" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/178</a></li>
+<li>Fix follows on unlocked accounts by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/180" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/180</a></li>
+<li>Add <code>mention</code> class to links of mentions by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/181" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/181</a></li>
+<li>Remove usage of <code>mem::take</code> by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/182" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/182</a></li>
+<li>SQLite fixes by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/183" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/183</a></li>
+<li>Fix home timeline by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/186" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/186</a></li>
+<li>Replace <code>chrono</code> with <code>time</code> by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/187" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/187</a></li>
+<li>Remove <code>tempdir</code> dependency by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/188" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/188</a></li>
+<li>(Hopefully) last breaking database changes by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/189" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/189</a></li>
+<li>Update flake and Cargo dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/191" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/191</a></li>
+<li>Remove the unique requirement from the <code>username</code> column by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/192" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/192</a></li>
+<li>Update deadpool-redis to v0.12 by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/193" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/193</a></li>
+<li>Ensure the signature key owner is the author of the activity by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/194" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/194</a></li>
+<li>Update dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/197" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/197</a></li>
+<li>Use UUID in user path by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/198" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/198</a></li>
+<li>Update dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/202" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/202</a></li>
+<li>Build support via nix by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/199" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/199</a></li>
+<li>Add white text colour attribute on registration form style by @perillamint in <a href="https://github.com/kitsune-soc/kitsune/pull/204" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/204</a></li>
+<li>Better SQL search by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/208" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/208</a></li>
+<li>Update dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/209" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/209</a></li>
+<li>Enable CPU features by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/211" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/211</a></li>
+<li>Add additional layers by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/212" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/212</a></li>
+<li>Diesel migration by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/210" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/210</a></li>
+<li>Announce activity support by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/213" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/213</a></li>
+<li>Add default header to Mastodon API by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/214" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/214</a></li>
+<li>Fix relationship mapping by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/215" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/215</a></li>
+<li>Make URL column non-nullable by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/216" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/216</a></li>
+<li>Update "State of federation" section by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/218" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/218</a></li>
+<li>Update dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/220" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/220</a></li>
+<li>Return 401 instead of 404 when user is not found by @perillamint in <a href="https://github.com/kitsune-soc/kitsune/pull/222" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/222</a></li>
+<li>Do not try to update account if user does not have profile image and header image by @perillamint in <a href="https://github.com/kitsune-soc/kitsune/pull/224" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/224</a></li>
+<li>Disable HTTP/2 by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/226" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/226</a></li>
+<li>Remove the <code>Host</code> header by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/227" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/227</a></li>
+<li>Small database-level optimisations by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/228" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/228</a></li>
+<li>Query pipelining by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/229" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/229</a></li>
+<li>Fix warnings when doing release builds by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/230" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/230</a></li>
+<li>Include the Git revision in the versions by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/231" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/231</a></li>
+<li>Update dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/232" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/232</a></li>
+<li>Bump version by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/233" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/233</a></li>
+</ul>
+<h2>New Contributors</h2>
+<ul>
+<li>@perillamint made their first contribution in <a href="https://github.com/kitsune-soc/kitsune/pull/204" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/204</a></li>
+</ul>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/kitsune-soc/kitsune/compare/v0.0.1-pre.0...v0.0.1-pre.1" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/compare/v0.0.1-pre.0...v0.0.1-pre.1</a></p>
+
+  </div>
+</section>
+    </div>
+  </div>
+
+        </main>
+      </div>
+
+      <footer>
+        
+          <a href="https://github.com/kitsune-soc/kitsune"><div class="github-icon" aria-hidden="true"></div></a>
+        
+        <span>
+          Kitsune, AGPL-3.0-or-later
+        </span>
+      </footer>
+    </div>
+
+    
+    
+
+    
+  </body>
+</html>

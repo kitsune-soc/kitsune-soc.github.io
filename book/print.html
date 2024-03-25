@@ -1,0 +1,780 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js oranda-dark">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Kitsune documentation</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="oranda-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "oranda-dark" : "oranda-dark";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('orandamdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('orandamdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('orandamdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('oranda-dark')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Running</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="running/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="running/basic-configuration.html"><strong aria-hidden="true">2.2.</strong> Basic configuration</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Configuring</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="configuring/cache.html"><strong aria-hidden="true">3.1.</strong> Cache</a></li><li class="chapter-item expanded "><a href="configuring/captcha.html"><strong aria-hidden="true">3.2.</strong> Captcha</a></li><li class="chapter-item expanded "><a href="configuring/clacks-overhead.html"><strong aria-hidden="true">3.3.</strong> Clacks Overhead</a></li><li class="chapter-item expanded "><a href="configuring/database.html"><strong aria-hidden="true">3.4.</strong> Database</a></li><li class="chapter-item expanded "><a href="configuring/deny-brave-browsers.html"><strong aria-hidden="true">3.5.</strong> Deny Brave Browsers</a></li><li class="chapter-item expanded "><a href="configuring/email.html"><strong aria-hidden="true">3.6.</strong> Emailing</a></li><li class="chapter-item expanded "><a href="configuring/federation-filter.html"><strong aria-hidden="true">3.7.</strong> Federation Filter</a></li><li class="chapter-item expanded "><a href="configuring/instance.html"><strong aria-hidden="true">3.8.</strong> Instance</a></li><li class="chapter-item expanded "><a href="configuring/job-scheduler.html"><strong aria-hidden="true">3.9.</strong> Job Scheduler</a></li><li class="chapter-item expanded "><a href="configuring/language-detection.html"><strong aria-hidden="true">3.10.</strong> Language Detection</a></li><li class="chapter-item expanded "><a href="configuring/link-embedding.html"><strong aria-hidden="true">3.11.</strong> Link embedding</a></li><li class="chapter-item expanded "><a href="configuring/mrf.html"><strong aria-hidden="true">3.12.</strong> MRF (Message Rewrite Facility)</a></li><li class="chapter-item expanded "><a href="configuring/messaging.html"><strong aria-hidden="true">3.13.</strong> Messaging</a></li><li class="chapter-item expanded "><a href="configuring/oidc.html"><strong aria-hidden="true">3.14.</strong> OIDC (OpenID Connect)</a></li><li class="chapter-item expanded "><a href="configuring/opentelemetry.html"><strong aria-hidden="true">3.15.</strong> OpenTelemetry</a></li><li class="chapter-item expanded "><a href="configuring/search.html"><strong aria-hidden="true">3.16.</strong> Search</a></li><li class="chapter-item expanded "><a href="configuring/storage.html"><strong aria-hidden="true">3.17.</strong> Storage</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Specification</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="spec/http-signatures.html"><strong aria-hidden="true">4.1.</strong> HTTP signatures</a></li><li class="chapter-item expanded "><a href="spec/webfinger.html"><strong aria-hidden="true">4.2.</strong> Webfinger</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="oranda-dark">Hacker</button></li>
+
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Kitsune documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>Kitsune is a decentralised microblogging platform built on the ActivityPub protocol.<br />
+This means that anyone can run their own Kitsune on their own hardware and seamlessly interact with each other.</p>
+<p>Of course you can also sign up on an existing instance to try it out, no strings attached.<br />
+If you are interested in running your own instance, head over to our installation guide.</p>
+<h2 id="chat"><a class="header" href="#chat">Chat</a></h2>
+<p>Feel free to join our chat if you have any problems or if you want to contribute.<br />
+We have channels on Matrix and Discord which are bridged with each other, so join whichever you are more comfortable with.</p>
+<p><a href="https://matrix.to/#/#kitsune-space:matrix.org"><img src="https://img.shields.io/matrix/kitsune-space:matrix.org?label=Matrix%20chat&amp;style=for-the-badge" alt="Matrix" /></a>
+<a href="https://discord.gg/YGAtX7nfrG"><img src="https://img.shields.io/discord/1118538521423138856?label=Discord%20chat&amp;style=for-the-badge" alt="Discord" /></a></p>
+<p>(The side-panel links to the Matrix room since Matrix is the more open and privacy-respecting solution out of the both)</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<p>At the moment, the only way to install Kitsune is to compile it from source.<br />
+Don't worry, that sounds way more scary than it actually is. In this guide we will step you through it.</p>
+<h2 id="dependencies"><a class="header" href="#dependencies">Dependencies</a></h2>
+<p>In order to build Kitsune, need a few dependencies. These are:</p>
+<ol>
+<li>The Rust toolchain (<a href="https://rustup.rs/">recommended installation</a>)</li>
+<li>PostgreSQL as a dedicated DBMS</li>
+<li>Redis for the job queue</li>
+<li><a href="https://nodejs.org/en">NodeJS</a> v16+</li>
+<li><a href="https://classic.yarnpkg.com/en/docs/install">Yarn</a></li>
+<li>Reverse Proxy (recommended: <a href="https://caddyserver.com/docs/install">Caddy</a>)</li>
+</ol>
+<p>Yes, that's really it. We don't need more. Kitsune is designed to use as few native dependencies as possible to make building from source easy!</p>
+<h3 id="note-on-cc-compiler-requirement"><a class="header" href="#note-on-cc-compiler-requirement">Note on C/C++ compiler requirement</a></h3>
+<p>Rust needs a C/C++ compiler to invoke the linker and potentially build some native libraries to statically link to, so make sure you have one installed.</p>
+<p>To install it under Debian and Ubuntu, run the following command:</p>
+<pre><code class="language-bash">sudo apt install build-essential
+</code></pre>
+<p>The name of the package(s) containing these tools might differ between distributions.</p>
+<h2 id="building"><a class="header" href="#building">Building</a></h2>
+<p>First, grab yourself a copy of the source code. You can either download the <a href="https://github.com/kitsune-soc/kitsune/archive/refs/heads/main.zip">main branch ZIP archive</a> or clone it via Git. Both ways will work just fine.</p>
+<blockquote>
+<p>The recommended way to download the source is via Git since it makes updating and doing a rollback way easier.</p>
+</blockquote>
+<p>To download a Git repository, just run the following command (this assumes you have <a href="https://git-scm.com/">Git</a> installed):</p>
+<pre><code class="language-bash">git clone https://github.com/kitsune-soc/kitsune.git
+</code></pre>
+<blockquote>
+<p>If you downloaded the ZIP, just unzip the archive</p>
+</blockquote>
+<p>Next, move into the newly created directory and then into the <code>kitsune-fe</code> directory and build the frontend. 
+To do this run:</p>
+<pre><code class="language-bash">yarn install &amp;&amp; yarn build
+</code></pre>
+<p>Now move out of the directory and back into the main one. Then build the binaries in release mode.<br />
+To do this run the following command:</p>
+<pre><code class="language-bash">cargo build --release
+</code></pre>
+<p>After the command finished there should be the following three binaries inside the <code>target/release</code> directory:</p>
+<ul>
+<li><code>kitsune</code>: The main Kitsune application. This is the heart of the whole application.</li>
+<li><code>kitsune-cli</code>: The Kitsune CLI utility. Used to give users roles and clear the job scheduler table.</li>
+<li><code>kitsune-job-runner</code>: The dedicated Kitsune job runner</li>
+</ul>
+<p>That's it for the building part but before we can actually run our instance, we need to configure it first.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="basic-configuration"><a class="header" href="#basic-configuration">Basic configuration</a></h1>
+<p>Kitsune is using the <a href="https://toml.io">TOML configuration format</a> to configure the main application and the job runner.<br />
+The syntax itself is easy to grasp and is essentially and extended INI format.</p>
+<blockquote>
+<p>The auxiliary services/CLI tools are using environment variables at the moment.
+Note that this might change in the future.</p>
+</blockquote>
+<blockquote>
+<p>Example configurations for external programs can be found in <code>kitsune/contrib</code>.</p>
+</blockquote>
+<blockquote>
+<p>The example config for Kitsune can be found in the root directory titled &quot;config.example.toml&quot;, move it wherever you like, and feel free to rename it.</p>
+</blockquote>
+<p>The simplest Kitsune configuration looks like this:</p>
+<pre><code class="language-toml">[cache]
+type = &quot;in-memory&quot;
+
+[database]
+url = &quot;postgres://localhost/kitsune&quot;
+max-connections = 20
+
+[instance]
+allow-non-ascii-usernames = false
+name = &quot;Kitsune&quot;
+description = &quot;https://www.youtube.com/watch?v=6lnnPnr_0SU&quot;
+character-limit = 5000
+registrations-open = true
+
+[instance.federation-filter]
+type = &quot;deny&quot;
+domains = []
+
+[job-queue]
+redis-url = &quot;redis://localhost&quot;
+num-workers = 20
+
+[messaging]
+type = &quot;in-process&quot;
+
+[server]
+frontend-dir = &quot;./kitsune-fe/dist&quot;
+max-upload-size = 20242880          # 5MB
+media-proxy-enabled = false
+port = 5000
+request-timeout-secs = 60
+
+[search]
+type = &quot;sql&quot;
+
+[storage]
+type = &quot;fs&quot;
+upload-dir = &quot;./uploads&quot;
+
+[url]
+scheme = &quot;https&quot;
+domain = &quot;kitsune.example.com&quot;
+</code></pre>
+<p>To successfully deploy the application, make sure you <strong>at least</strong> change the following sections to your own:</p>
+<ul>
+<li>
+<p><code>domain</code></p>
+<ul>
+<li>Domain of your instance. Used to build the URLs of your activities.</li>
+<li>This is a <em>very important</em> setting and <strong>cannot</strong> be changed after the first setup.</li>
+</ul>
+</li>
+<li>
+<p><code>database</code></p>
+<ul>
+<li>Specifically the <code>url</code> parameter. Refer to <a href="running/../configuring/database">database section</a> page for the expected format.</li>
+</ul>
+</li>
+<li>
+<p><code>job-queue</code></p>
+<ul>
+<li>Specifically the <code>redis-url</code> parameter. Refer to the <a href="running/../configuring/job-scheduler">job scheduler</a> page for the expected format.</li>
+</ul>
+</li>
+</ul>
+<p>To run the application use the following command:</p>
+<pre><code class="language-bash">./kitsune -c [path-to-config-file]
+</code></pre>
+<p>In order to read up on all the possible configurations, check out the &quot;Configuration&quot; section.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cache"><a class="header" href="#cache">Cache</a></h1>
+<p>Computing things from scratch can be pretty expensive, that's where caching comes in.<br />
+To best fit for your specific setup, Kitsune has multiple caching backends:</p>
+<h2 id="no-cache"><a class="header" href="#no-cache">No Cache</a></h2>
+<pre><code class="language-toml">[cache]
+type = &quot;none&quot;
+</code></pre>
+<p>This is the simplest of all caching modes. It just doesn't cache anything at all and utilises Kitsune's no-op cache. 
+Pretty much only desirable if you are debugging other caches for invalidation issues (or if you have <em>heavy</em> memory constraints and no way to get your hands on a Redis instance).</p>
+<h2 id="in-memory-cache"><a class="header" href="#in-memory-cache">In-Memory Cache</a></h2>
+<pre><code class="language-toml">[cache]
+type = &quot;in-memory&quot;
+</code></pre>
+<p>This tells Kitsune to cache data directly into its memory. The cache is bounded so it doesn't make you run out of memory.</p>
+<h2 id="redis-cache"><a class="header" href="#redis-cache">Redis Cache</a></h2>
+<pre><code class="language-toml">[cache]
+type = &quot;redis&quot;
+redis-url = &quot;redis://[Your Redis instance]&quot;
+</code></pre>
+<p>This tells Kitsune to cache data via expiring keys into the configured Redis instance.<br />
+This is the optimal configuration for setups where you have multiple Kitsune nodes running at the same time.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="captcha"><a class="header" href="#captcha">Captcha</a></h1>
+<p>Kitsune offers the ability to require captchas on sign-up to protect your service against spam waves.</p>
+<p>We offer different implementations to fit your specific needs</p>
+<h2 id="hcaptcha"><a class="header" href="#hcaptcha">hCaptcha</a></h2>
+<p>The rather well-known <a href="https://www.hcaptcha.com/">hCaptcha service</a> advertises itself as a more privacy-oriented alternative to Google's reCaptcha.</p>
+<p>To use it to protect your instance, add the following to your configuration:</p>
+<pre><code class="language-toml">[captcha]
+type = &quot;hcaptcha&quot;
+verify-url = &quot;[Verify URL]&quot;
+site-key = &quot;[Your site key]&quot;
+secret-key = &quot;[Your secret key]&quot;
+</code></pre>
+<h2 id="mcaptcha"><a class="header" href="#mcaptcha">mCaptcha</a></h2>
+<p><a href="https://mcaptcha.org/">mCaptcha</a> is a lesser known open-source self-hostable captcha service.<br />
+Technically it isn't a &quot;captcha&quot; and more of a &quot;proof-of-work verification system&quot;, but it should defend your service against large spam attacks.</p>
+<p>To use mCaptcha, add the following to your configuration:</p>
+<pre><code class="language-toml">[captcha]
+type = &quot;mcaptcha&quot;
+widget-link = &quot;[Widget link]&quot;
+site-key = &quot;[Your site key]&quot;
+secret-key = &quot;[Your secret key]&quot;
+verify-url = &quot;[Verify URL]&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="clacks-overhead"><a class="header" href="#clacks-overhead">Clacks Overhead</a></h1>
+<p>Clacks Overhead is a non-standard HTTP header used for as something like a silent memorial.<br />
+The header is appended to each response via a middleware.</p>
+<p>The header looks something like this:</p>
+<pre><code>X-Clacks-Overhead: GNU [Name 1 here], [Name 2 here]
+</code></pre>
+<p><a href="https://xclacksoverhead.org/home/about">More info about this header</a></p>
+<hr />
+<p>The names for the header can be configured like so:</p>
+<pre><code class="language-toml">[server]
+clacks-overhead = [
+    &quot;Natalie Nguyen&quot;,
+    &quot;John \&quot;Soap\&quot; MacTavish&quot;
+]
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="database"><a class="header" href="#database">Database</a></h1>
+<p>Kitsune requires a PostgreSQL installation that it can connect to since we make usage of Postgres-specific features, such as their full-text search.</p>
+<p>You can find instructions on creating a database (along with password-protected user) <a href="https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e">here</a>.</p>
+<blockquote>
+<p>We supported SQLite in the past (before v0.0.1-pre.1), but the support has been dropped due to a high maintenance burden and rather little expected usage.</p>
+</blockquote>
+<h2 id="database-url-structure"><a class="header" href="#database-url-structure">Database URL structure</a></h2>
+<pre><code>postgres://[Username]:[Password]@[DBMS host]:[Port]/[Database name]
+</code></pre>
+<h3 id="example-url"><a class="header" href="#example-url">Example URL</a></h3>
+<pre><code>postgres://database-user:password-here@localhost:5432/db-name-here
+</code></pre>
+<h2 id="maximum-connections"><a class="header" href="#maximum-connections">Maximum connections</a></h2>
+<p>The <code>max-connections</code> setting defines how many connections the globally shared connection pool will open to the database server <em>at maximum</em>.<br />
+What you should set this value to depends on many factors.</p>
+<blockquote>
+<p>We currently do not report any pool metrics via the Prometheus endpoint. This might be added in the future.</p>
+</blockquote>
+<h2 id="tls-support"><a class="header" href="#tls-support">TLS support</a></h2>
+<p>If you want to connect to a database using TLS, set the parameter <code>use-tls</code> to <code>true</code>.<br />
+This setting is equivalent to <code>ssl_mode=full-verify</code> if you are looking for a PostgreSQL equivalent.</p>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<pre><code class="language-toml">[database]
+url = &quot;postgres://kitsune:verysecure@localhost/kitsune_prod&quot;
+max-connections = 25
+use-tls = true
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="deny-brave-browsers"><a class="header" href="#deny-brave-browsers">Deny Brave Browsers</a></h1>
+<p>Brave is a company founded by a queerphobic bigot, funded by people such as Peter Thiel.
+You can get pretty much all of Brave's &quot;privacy advantages&quot; with a Firefox + uBlock Origin + DuckDuckGo installation. </p>
+<p>(Plus, Brave is another Chromium-based browsers. Using Firefox helps diversify the browser landscape at least a little bit)</p>
+<p>When this setting is enabled, all browsers with the Brave User-Agent are redirected to an <a href="https://www.spacebar.news/stop-using-brave-browser/">article explaining the hateful and problematic background of Brave</a>.</p>
+<p>Since Kitsune is about choice, we give you the ability to simply toggle this functionality off.<br />
+While we give you that option, you maybe want to keep this option on.</p>
+<p>The reasoning behind this is simple:</p>
+<ul>
+<li>If people aren't aware and care, they can switch browsers. Switching a browser isn't a herculean task.</li>
+<li>If people are aware and don't care, I'm not sure if you want them on your service.</li>
+</ul>
+<pre><code class="language-toml">[server]
+deny-brave-browsers = true
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="emailing"><a class="header" href="#emailing">Emailing</a></h1>
+<p>Configuring an Email server for Kitsune automatically enables account confirmation via Email.</p>
+<p>The mailer currently only supports SMTP, no provider-specific REST APIs.</p>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<pre><code class="language-toml">[email]
+from-address = &quot;kitsunemailer@joinkitsune.org&quot;
+host = &quot;your.smtp.host&quot;
+username = &quot;admin&quot;
+password = &quot;password&quot;
+starttls = false
+</code></pre>
+<p>There is also an option config you can place in front of &quot;from_address&quot; if your email service provider does not do TLS over 465 and instead uses 587 (STARTTLS).</p>
+<p>Here is an example configuration utilizing STARTTLS:</p>
+<pre><code class="language-toml">[email]
+from_address = &quot;kitsunemailer@joinkitsune.org&quot;
+host = &quot;your.smtp-host.example&quot;
+username = &quot;admin&quot;
+password = &quot;password&quot;
+starttls = true
+</code></pre>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
+<p><code>starttls</code> :</p>
+<p>By default Kitsune users the port 465 to send mail. </p>
+<p>Most service providers use this port, but some (for example Postmark) need to have their TLS usage bootstrapped via STARTTLS over port 587. </p>
+<p><code>from-address</code> :</p>
+<p>This is the address Kitsune puts into the <code>From</code> field of the Email</p>
+<p><code>host</code> : </p>
+<p>This is the domain that your SMTP server is reachable under.</p>
+<p><code>username, password</code> :</p>
+<p>The credentials to your SMTP server. Which values to put here vary from provider to provider.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="federation-filter"><a class="header" href="#federation-filter">Federation filter</a></h1>
+<p>Kitsune has a basic federation filter. It has two main modes of operation:</p>
+<ul>
+<li>Allowlist-based</li>
+<li>Denylist-based</li>
+</ul>
+<p>The domain list supports <a href="https://en.wikipedia.org/wiki/Glob_(programming)">globbing</a>, so can, among other things, define wildcard blocks.</p>
+<h2 id="allowlist"><a class="header" href="#allowlist">Allowlist</a></h2>
+<p>As the name might suggests, this mode allows instance administrators to define a set list of domains the server is allowed to interact with.<br />
+Federation attempts from any other server are rejected.</p>
+<h3 id="configuration-example"><a class="header" href="#configuration-example">Configuration example</a></h3>
+<pre><code class="language-toml">[instance.federation-filter]
+type = &quot;allow&quot; 
+domains = [&quot;*.myfriends.com&quot;, &quot;cool-instan.ce&quot;]
+</code></pre>
+<h2 id="denylist"><a class="header" href="#denylist">Denylist</a></h2>
+<p>This is the opposite of the allowlist-based federation. In this mode, Kitsune generally accepts federation attempts from any instance <em>except</em> the ones defined in the domain list.</p>
+<h3 id="configuration-example-1"><a class="header" href="#configuration-example-1">Configuration example</a></h3>
+<pre><code class="language-toml">[instance.federation-filter]
+type = &quot;deny&quot;
+domains = [&quot;*.badstuff.com&quot;, &quot;mean-people.biz&quot;]
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="instance"><a class="header" href="#instance">Instance</a></h1>
+<p>Kitsune has a number of configurations that change how your instance works.</p>
+<pre><code class="language-toml">[instance]
+allow-non-ascii-usernames = false
+name = &quot;Kitsune&quot;
+description = &quot;https://www.youtube.com/watch?v=6lnnPnr_0SU&quot;
+character-limit = 5000
+registrations-open = true
+</code></pre>
+<h2 id="allow-non-ascii-usernames"><a class="header" href="#allow-non-ascii-usernames"><code>allow-non-ascii-usernames</code></a></h2>
+<p>Kitsune's database schema allows us to store usernames in a way that:</p>
+<ol>
+<li>Ignores the case</li>
+<li>Ignores the accent markers, etc.</li>
+</ol>
+<p>That way we can store usernames in the database that aren't strictly ASCII letters, meaning you could sign up using the username <code>äumeträ</code>.<br />
+And it would also automatically reserve any mutations of your username.</p>
+<p>For example, getting the username <code>äumeträ</code> would automatically reserve these usernames, too:</p>
+<ul>
+<li><code>AUMETRA</code></li>
+<li><code>Äumetra</code></li>
+<li><code>áumetrà</code></li>
+</ul>
+<p>and so on..</p>
+<blockquote>
+<p><strong>Note</strong>: This doesn't allow you to sign up with emoji, such as 🎈. It will still require your name to be alphanumeric, just in any alphabet that unicode supports!</p>
+</blockquote>
+<p>This is opt-in, since we aren't quite sure yet how other fediverse software, such as Mastodon, handles non-ASCII usernames.</p>
+<h2 id="name"><a class="header" href="#name"><code>name</code></a></h2>
+<p>This changes the name of the instance displayed on the landing page and returned via instance metadata endpoints (such as Mastodon's <code>/api/v1/instance</code>).</p>
+<h2 id="description"><a class="header" href="#description"><code>description</code></a></h2>
+<p>Similar to <code>name</code>, this setting adjusts the description on the landing page and the one returned via the metadata endpoints.</p>
+<blockquote>
+<p><strong>Note</strong>: This field is interpreted as raw HTML</p>
+</blockquote>
+<h2 id="character-limit"><a class="header" href="#character-limit"><code>character-limit</code></a></h2>
+<p>This setting sets the character limit specific to your instance.</p>
+<h2 id="registrations-open"><a class="header" href="#registrations-open"><code>registrations-open</code></a></h2>
+<p>Determines whether your instance accepts new users or not. When set to <code>false</code>, the registration APIs will return a failure code.</p>
+<h2 id="webfinger-domain"><a class="header" href="#webfinger-domain"><code>webfinger-domain</code></a></h2>
+<p>This enables you to host your <code>.well-known/webfinger</code> resource on your main domain (i.e. <code>example.com</code>) and the web UI and inboxes on a subdomain (i.e. <code>kitsune.example.com</code>).<br />
+The advantage of this configuration is that your handle can be <code>@me@example.com</code>, while the account is hosted on <code>fedi.example.com</code>.</p>
+<h3 id="example-value"><a class="header" href="#example-value">Example value</a></h3>
+<pre><code class="language-toml">webfinger-domain = &quot;example.com&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="job-scheduler"><a class="header" href="#job-scheduler">Job Scheduler</a></h1>
+<p>Kitsune uses the database to store and retrieve jobs that have to be run. 
+There are options to tune the job scheduler to your specific needs.</p>
+<pre><code class="language-toml">[job-queue]
+redis-url = &quot;redis://localhost&quot;
+num-workers = 20
+</code></pre>
+<h2 id="redis-url"><a class="header" href="#redis-url"><code>redis-url</code></a></h2>
+<p>This option configures the Redis instance that the jobs are put on.</p>
+<p>We utilize Redis streams and transactional Lua scripting to ensure no jobs are lost even in the case of a crash.</p>
+<h2 id="job-workers"><a class="header" href="#job-workers"><code>job-workers</code></a></h2>
+<p>This option configures how many jobs are run concurrently at the same time.</p>
+<p>Each job is a lightweight task inside Kitsune's async runtime, so you can raise this well above what you'd raise a thread limit to.</p>
+<blockquote>
+<p><strong>Caution</strong>: Each activity delivery is a job, and each of the delivery jobs run multiple connections concurrently. 
+Raising this job worker limit too high without also increasing the maximum file descriptors might lead to weird issues.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="language-detection"><a class="header" href="#language-detection">Language detection</a></h1>
+<p>In order to classify posts better, Kitsune attempts to automatically guess the language a post is written in to improve the search experience by using language-specific tokenization.</p>
+<p>It can do that through a number of language detection backends.<br />
+The currently supported backends are:</p>
+<ul>
+<li><code>none</code>: Use no detection and just return the default language</li>
+<li><code>whatlang</code>: Use the <a href="https://github.com/greyblake/whatlang-rs">whatlang</a> library (recommended)</li>
+<li><code>whichlang</code>: Use the <a href="https://github.com/quickwit-oss/whichlang">whichlang</a> library</li>
+</ul>
+<h3 id="note-on-the-backends"><a class="header" href="#note-on-the-backends">Note on the backends</a></h3>
+<p>In general you should prefer the <code>whatlang</code> backend as it offers reliability calculations and covers a wide range of languages.</p>
+<p><code>whichlang</code> is generally <em>faster</em> than <code>whatlang</code> but has less supported languages and doesn't offer any reliability calculations, meaning the classifications might be <em>way off</em>
+and won't ever fall back on the default language.</p>
+<p>You probably don't want to use the <code>none</code> backend unless you are 100% confident that the language detection is too resource intensive for your installation (which is extremely unlikely!)</p>
+<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
+<h3 id="backend"><a class="header" href="#backend"><code>backend</code></a></h3>
+<p>In order to set the backend, choose one of the above mentioned supported backends.<br />
+It is configured like so:</p>
+<pre><code class="language-toml">[language-detection]
+backend = &quot;whatlang&quot; # Use &quot;whatlang&quot; to detect the language
+default-language = &quot;en&quot;
+</code></pre>
+<h3 id="default-language"><a class="header" href="#default-language"><code>default-language</code></a></h3>
+<p>This setting sets the default language Kitsune falls back onto.<br />
+If the language couldn't be guessed for whatever reason (be it an internal failure of the backend or because the reliability of the guess wasn't given),
+this is the language Kitsune returns.</p>
+<p>You might want to adjust this if you know the language that will be predominantly posted in on your instance to improve search quality, especially on shorter posts.</p>
+<p>The setting accepts any valid ISO 639-1 or 639-3 code.</p>
+<p>ISO 639-1:</p>
+<pre><code class="language-toml">[language-detection]
+backend = &quot;whatlang&quot;
+default-language = &quot;de&quot; # Use German to fall back on by referencing its ISO 639-1 value
+</code></pre>
+<p>ISO 639-3:</p>
+<pre><code class="language-toml">[language-detection]
+backend = &quot;whatlang&quot;
+default-language = &quot;kor&quot; # Use Korean to fall back on by referencing its ISO 639-3 value
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="link-embedding"><a class="header" href="#link-embedding">Link embedding</a></h1>
+<p>Kitsune has the ability to show link previews as so-called &quot;embed cards&quot;.<br />
+We use <a href="https://github.com/Lantern-chat/embed-service/">Lantern Chat's <code>embed-service</code></a> to provide this functionality.</p>
+<p>To use it with Kitsune, run the <code>embed-service</code> and add the following configuration to Kitsune's configuration file:</p>
+<pre><code class="language-toml">[embed]
+service-url = &quot;[URL to the embed service]&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="mrf-message-rewrite-facility"><a class="header" href="#mrf-message-rewrite-facility">MRF (Message Rewrite Facility)</a></h1>
+<p>The idea of a message rewrite facility was originally popularized by Pleroma/Akkoma.<br />
+Essentially it enables you to add small filters/transformers into your ActivityPub federation.</p>
+<p>The MRF module sits at the very beginning of processing an incoming activity.<br />
+In this position, the MRF can transform and reject activities based on criteria defined by the developers of the module.</p>
+<p>For example, you can use it to:</p>
+<ul>
+<li>detect spam</li>
+<li>mark media attachments as sensitive</li>
+<li>nya-ify every incoming post</li>
+</ul>
+<h2 id="configuration-1"><a class="header" href="#configuration-1">Configuration</a></h2>
+<h3 id="module-dir"><a class="header" href="#module-dir"><code>module-dir</code></a></h3>
+<p>This configuration option tells Kitsune where to scan for WASM modules to load and compile.</p>
+<pre><code class="language-toml">[mrf]
+module-dir = &quot;mrf-modules&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="messaging"><a class="header" href="#messaging">Messaging</a></h1>
+<p>Kitsune uses messaging services to exchange events for cache invalidation, notification delivery, etc.<br />
+To offer flexibility and to make self-hosting as easy as possible, we have multiple such backends.</p>
+<h2 id="redis-backend"><a class="header" href="#redis-backend">Redis backend</a></h2>
+<p>This is backend you should choose when running multiple nodes in parallel. This then uses Redis' PubSub feature to exchange messages.</p>
+<h3 id="configuration-example-2"><a class="header" href="#configuration-example-2">Configuration example</a></h3>
+<pre><code class="language-toml">[messaging]
+type = &quot;redis&quot;
+redis-url = &quot;redis://localhost:6379&quot;
+</code></pre>
+<h2 id="in-process"><a class="header" href="#in-process">In-process</a></h2>
+<p>This backend is optimal for small self-contained installations. It uses Tokio's broadcast channel internally.</p>
+<h3 id="configuration-example-3"><a class="header" href="#configuration-example-3">Configuration example</a></h3>
+<pre><code class="language-toml">[messaging]
+type = &quot;in-process&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="oidc-openid-connect"><a class="header" href="#oidc-openid-connect">OIDC (OpenID Connect)</a></h1>
+<blockquote>
+<p>This feature is gated behind the <code>oidc</code> compile-time feature</p>
+</blockquote>
+<p>OpenID Connect (OIDC) is a technology to provide Single Sign-On (SSO) that it shared across multiple services. 
+This is useful if you, for example, want to run Kitsune together with a bunch of other services and don't want to maintain multiple logins.</p>
+<p>In order to enable OIDC for your Kitsune instance, find the <code>oidc</code> parameter inside the <code>server</code> configuration section. 
+Set this parameter to the following value:</p>
+<pre><code class="language-toml">[server.oidc]
+server-url = &quot;[Issuer URL]&quot;
+client-id = &quot;[Kitsune's Client ID]&quot;
+client-secret = &quot;[Kitsune's Client Secret]&quot;
+
+[server.oidc.store]
+type = &quot;in-memory&quot; # &quot;in-memory&quot; or &quot;redis&quot;
+#url = &quot;redis://localhost&quot; # If the configured type is &quot;redis&quot;
+</code></pre>
+<h2 id="server-url"><a class="header" href="#server-url">Server URL</a></h2>
+<p>This is the URL of the issuer; this setting differs between OIDC solutions. Don't worry, Kitsune won't start up if this value is invalid.</p>
+<h2 id="client-id-and-secret"><a class="header" href="#client-id-and-secret">Client ID and Secret</a></h2>
+<p>These values are created on the dashboard of the OIDC solution you are using. 
+Kitsune needs these to obtain an access token from the OIDC server to do introspection and obtain some information about the user.</p>
+<h2 id="store"><a class="header" href="#store">Store</a></h2>
+<p>The store is where the login state is stored in temporarily until the sign-in has completed.</p>
+<h3 id="supported-backends"><a class="header" href="#supported-backends">Supported backends</a></h3>
+<ul>
+<li><code>in-memory</code>: The state is stored in an in-memory LRU structure</li>
+<li><code>redis</code>: The state is stored in a Redis instance</li>
+</ul>
+<p>If you run multiple nodes, you should use Redis. Otherwise sign-ins can randomly fail.</p>
+<h2 id="kitsune-specific-oidc-requirements"><a class="header" href="#kitsune-specific-oidc-requirements">Kitsune-specific OIDC requirements</a></h2>
+<p>The OIDC server <strong>must</strong> return the following values in the claim:</p>
+<ul>
+<li><code>preferred_username</code></li>
+<li><code>email</code></li>
+</ul>
+<blockquote>
+<p>Keep the preferred username field unique. The username is used to identify the user inside Kitsune's database that's getting registered.<br />
+This might change in the future.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="opentelemetry"><a class="header" href="#opentelemetry">OpenTelemetry</a></h1>
+<p>Kitsune can export its traces and metrics via the OpenTelemetry Protocol (or OTLP, for short).</p>
+<p>To push the data to an endpoint, add the following to your configuration:</p>
+<pre><code class="language-toml">[opentelemetry]
+# Where Kitsune pushes metrics (eg. Prometheus)
+metrics-transport = &quot;http&quot; # &quot;http&quot; or &quot;grpc&quot;
+metrics-endpoint = &quot;https://localhost:5050/metrics-endpoint&quot;
+# Where Kitsune pushes traces (eg. Jaeger)
+tracing-transport = &quot;http&quot; # &quot;http&quot; or &quot;grpc&quot;
+tracing-endpoint = &quot;https://localhost:5050/tracing-endpoint&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="search"><a class="header" href="#search">Search</a></h1>
+<p>Kitsune has a number of search backends, each different from the other, to best fit your specific needs. 
+We want to give you a brief overview over the available backends.</p>
+<h2 id="no-search"><a class="header" href="#no-search">No Search</a></h2>
+<pre><code class="language-toml">[search]
+type = &quot;none&quot;
+</code></pre>
+<p>This completely disables the search on your instance. Finding posts and accounts is now only possible via direct links and handles.</p>
+<h2 id="sql-based-search"><a class="header" href="#sql-based-search">SQL-based Search</a></h2>
+<pre><code class="language-toml">[search]
+type = &quot;sql&quot;
+</code></pre>
+<p>This runs searches on your database directly. The quality is actually not too bad and uses automatic language detection to make full-text searches relevant.</p>
+<h2 id="meilisearch"><a class="header" href="#meilisearch">Meilisearch</a></h2>
+<blockquote>
+<p>You need to compile Kitsune with the <code>meilisearch</code> feature flag to enable this feature</p>
+</blockquote>
+<pre><code class="language-toml">[search]
+type = &quot;meilisearch&quot;
+instance-url = &quot;[URL of your Meilisearch instance]&quot;
+api-key = &quot;[API key to access your Meilisearch instance]&quot;
+</code></pre>
+<p>This instructs Kitsune to use <a href="https://www.meilisearch.com/">Meilisearch</a> as the search engine. Meilisearch provides incredibly fast, high-quality full-text search.<br />
+Meilisearch also has a cloud offering, making this the easiest high-quality search to use with Kitsune.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="storage"><a class="header" href="#storage">Storage</a></h1>
+<p>As a microblogging platform, Kitsune also offers users the ability to attach images, videos, and audio to their posts.
+We offer multiple different storage backends to store the attachments to.</p>
+<blockquote>
+<p><strong>Note</strong>: You might want to increase the upload limit by tweaking the <code>max-upload-size</code> parameter in your configuration; the number is the upload limit in bytes.
+The default set by the example configuration is 5MiB.</p>
+</blockquote>
+<h2 id="file-system"><a class="header" href="#file-system">File System</a></h2>
+<p>This is recommended for small instances.<br />
+Kitsune simply stores the media inside a user-defined directory on the local file system.</p>
+<p>In order to enable this, add this to your configuration:</p>
+<pre><code class="language-toml">[storage]
+type = &quot;fs&quot;
+upload-dir = &quot;path/to/upload/directory&quot;
+</code></pre>
+<p>This will then place all the uploads into the specified directory.</p>
+<h2 id="s3-compatible-storage"><a class="header" href="#s3-compatible-storage">S3-compatible storage</a></h2>
+<p>When your user count increases (or your requirements change), you might want to consider using an S3-compatible storage solution to store all your media attachments.</p>
+<p>In order to make this happen, add this to your configuration:</p>
+<pre><code class="language-toml">[storage]
+type = &quot;s3&quot;
+bucket-name = &quot;[Name of your bucket]&quot;
+endpoint-url = &quot;[Name of the endpoint]&quot;
+region = &quot;[Region of your S3 storage]&quot;
+force-path-style = false
+access-key = &quot;[Access key]&quot;
+secret-access-key = &quot;[Secret access key]&quot;
+</code></pre>
+<h3 id="bucket-name"><a class="header" href="#bucket-name">Bucket Name</a></h3>
+<p>This setting is pretty self-explanatory. It's the name of the bucket you created and want your attachments to be put in.</p>
+<h3 id="endpoint-url"><a class="header" href="#endpoint-url">Endpoint URL</a></h3>
+<p>The URL of the S3 endpoint. You can either get this from your storage provider's dashboard or documentation; really depends on the provider.</p>
+<h3 id="region"><a class="header" href="#region">Region</a></h3>
+<p>The S3 region in which you created the bucket. The value of this might be different from provider to provider.</p>
+<h3 id="force-path-style"><a class="header" href="#force-path-style">Force Path Style</a></h3>
+<p>Some S3 storage providers don't support the virtual-hosted request style. If your provider is one of those, set this setting to <code>true</code> to instruct Kitsune to use the legacy path style.</p>
+<h3 id="secret-access-key"><a class="header" href="#secret-access-key">(Secret) Access Key</a></h3>
+<p>These keys are given to you when creating your bucket. Make sure you keep these private!</p>
+<h3 id="notes-on-get_object-requests"><a class="header" href="#notes-on-get_object-requests">Notes on &quot;get_object&quot; requests</a></h3>
+<p>Currently Kitsune proxies all the S3 accesses, meaning each media access results in a &quot;get object&quot; request.<br />
+For example, Cloudflare R2 has a &quot;no egress fee policy&quot; which, due to this implementation detail, doesn't apply to Kitsune.</p>
+<blockquote>
+<p>This is not final, we might change how S3 uploads are handled</p>
+</blockquote>
+<h3 id="migrating-from-file-system-storage-to-s3"><a class="header" href="#migrating-from-file-system-storage-to-s3">Migrating from file-system storage to S3</a></h3>
+<p>The migration is pretty simple. Upload all the files from your upload directory into the S3 bucket (while preserving the same file hierarchy) and change the configuration.<br />
+Kitsune should then serve the files without any problems.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="http-signatures"><a class="header" href="#http-signatures">HTTP signatures</a></h1>
+<p>HTTP signatures are used by Kitsune to validate that the Activity/Object actually originates from the user it claims to.<br />
+We implement a subset of <a href="https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures-12"><code>draft-cavage-http-signatures-12</code></a> to do this.</p>
+<p>Only asymmetric cryptographic algorithms are implemented since the symmetric ones:</p>
+<ol>
+<li>Could lead to potential key-confusion attacks</li>
+<li>Aren't useful in the context of ActivityPub</li>
+</ol>
+<p>We make use of the <code>keyId</code> field by looking up the public key material via this ID. The ID is sourced from the ActivityPub actor.<br />
+The signature scheme used is inferred by the OID embedded in the public key material. The material is expected to be an X.509 SPKI structure.</p>
+<p>At the moment, Kitsune uses RSA keys but has support for implementations that use Ed25519 for signatures.</p>
+<blockquote>
+<p>We use RSA because Mastodon doesn't support anything else. So if you want compatibility with Mastodon, you have to use RSA.<br />
+As soon as a mainline Mastodon release gets support for Ed25519 signatures, we will release an update that allows to rekey all the users.</p>
+</blockquote>
+<p>But if you are happy to just federate with Kitsune users, you can use Ed25519!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="webfinger"><a class="header" href="#webfinger">Webfinger</a></h1>
+<p>Kitsune uses Webfinger for resolving mentions and such. For example, when mentioning a user in a post in the form <code>@user@instance.org</code>, the mention is interpreted as a Webfinger <code>acct</code> query.<br />
+We then connect to the remote server and send an HTTP GET request on the path <code>/.well-known/webfinger</code> with the query parameter <code>resource</code> set to <code>acct:user@instance.org</code>.</p>
+<p>The server is then expected to return a Webfinger resource containing a link with the <code>rel</code> property set to <code>self</code> and the <code>href</code> attribute pointing to the ActivityPub actor.</p>
+<p>Example Webfinger resource:</p>
+<pre><code class="language-json">{
+    &quot;subject&quot;: &quot;acct:user@instance.org&quot;,
+    &quot;aliases&quot;: [],
+    &quot;links&quot;: [
+        {
+            &quot;rel&quot;: &quot;self&quot;,
+            &quot;href&quot;: &quot;https://instance.org/users/user&quot;
+        }
+    ]
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

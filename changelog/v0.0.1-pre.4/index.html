@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" id="oranda" class="hacker">
+  <head>
+    <title>Kitsune</title>
+    
+    
+      <link rel="icon" href="/favicon.ico" />
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kitsune" />
+    
+    
+    
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+    <link rel="stylesheet" href="/oranda-v0.6.1.css" />
+    
+      <link rel="stylesheet" href="/custom.css" />
+    
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-body">
+        
+          <div class="repo_banner">
+            <a href="https://github.com/kitsune-soc/kitsune">
+              <div class="github-icon" aria-hidden="true"></div>
+              Check out our GitHub!
+            </a>
+          </div>
+        
+
+        <main>
+          <header>
+            
+            <h1 class="title">Kitsune</h1>
+            
+  <nav class="nav">
+    <ul>
+      <li><a href="/">Home</a></li>
+
+      
+
+      
+        <li><a href="/artifacts/">Install</a></li>
+      
+
+      
+        <li><a href="/book/">Docs</a></li>
+      
+
+      
+        <li><a href="/funding/">Funding</a></li>
+      
+
+      
+        <li><a href="/changelog/">Changelog</a></li>
+      
+    </ul>
+  </nav>
+
+          </header>
+
+          
+  <div>
+    <h1>v0.0.1-pre.4</h1>
+    <div class="releases-body">
+      
+      
+      <section class="release pre-release ">
+  
+  <div class="release-info">
+    <span class="flex items-center gap-2">
+      <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>
+    <path stroke-linecap='round' stroke-linejoin='round' d='M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z' />
+    <path stroke-linecap='round' stroke-linejoin='round' d='M6 6h.008v.008H6V6z' /></svg>
+      v0.0.1-pre.4
+    </span>
+    <span class="flex items-center gap-2">
+      
+        <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'><path stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5' /></svg>
+        Oct 25 2023 at 19:05 UTC
+      
+    </span>
+  </div>
+  <div class="release-body">
+    <h1>kitsune 0.0.1-pre.4</h1>
+<p>Another pre-release. It's somewhat regular by now. Let's talk about what changed!</p>
+<p>Feel free to join one of the <a href="https://github.com/kitsune-soc/kitsune#chat" rel="noopener noreferrer">chat options</a> to chat with us!<br>
+Both of them are connected via a bridge, so it doesn't matter which one you join</p>
+<hr>
+<p>This release includes a fix for <a href="https://github.com/kitsune-soc/kitsune/security/advisories/GHSA-5prv-r7jg-vrf7" rel="noopener noreferrer">GHSA-5prv-r7jg-vrf7</a></p>
+<hr>
+<h2>Highlights</h2>
+<h3>Post update support</h3>
+<p>You can now receive updates to posts from other services!</p>
+<h3>Notification support</h3>
+<p>Thanks to @Zeerooth Kitsune now has notifications!<br>
+Mentions, favourites, reposts, etc. are now aggregated as notifications in your notification timeline.</p>
+<h3>Support for "webfinger domains"</h3>
+<p>We now store <code>@user@domain.example</code> instead of <code>@user@social.domain.example</code> if it's set-up in a compatible way.<br>
+Thanks for this @tesaguri!</p>
+<h3>Exif data is now stripped from select image formats</h3>
+<p>Kitsune now automatically strips the Exif data from the following image formats:</p>
+<ul>
+<li>JPEG</li>
+<li>PNG</li>
+<li>WebP</li>
+</ul>
+<p>Thanks @Zeerooth!</p>
+<h3>Dedicated job runner</h3>
+<p>We did some internal restructuring and you can now run headless job runners!<br>
+This was done to help you increase parallelism of job execution without running all the baggage of a web server.</p>
+<h3>Basic UI functionality</h3>
+<p>Kitsune gained some UI functionality with this release!<br>
+You can now check your home timeline, the local timeline, and global timeline; as well as checking out the "preview" of the upcoming rich-text post modal!</p>
+<h3>Build-time optimizations</h3>
+<p>Kitsune should now compile faster on most hardware by at least ~30sec.</p>
+<h3>Remove <code>kitsune-search-server</code></h3>
+<p>With this release, we say goodbye to our home-grown search service.<br>
+It hasn't been particulary well maintained in general and has only been an additional binary that had to be compiled basically.</p>
+<h3>OpenTelemetry support</h3>
+<p>With this release, we retire our old Prometheus scraping endpoint in favour of OTLP push-based metrics.<br>
+We also added support for pushing traces (in addition to metrics).</p>
+<p>This means you can export traces and metrics to whatever service, as long as they support the (rather ubiquitous) OpenTelemetry Wire Protocol.</p>
+<h2>Smaller changes</h2>
+<h3><code>post-processor</code> rewrite</h3>
+<p>Our <code>post-processor</code> crate (which is responsible for parsing your posts, turning mentions into actual mentions, etc.) was fully rewritten.<br>
+This rewrite improved performance and the basic transformation benchmark runs in ~212ns.</p>
+<pre style="background-color:#263238;"><span style="color:#eeffff;">simple_transform        time:   [211.68 ns 212.69 ns 213.82 ns]
+</span><span style="color:#eeffff;">                        change: [-1.1595% -0.3741% +0.3490%] (p = 0.34 &gt; 0.05)
+</span><span style="color:#eeffff;">                        No change in performance detected.
+</span></pre>
+
+<h3>Replace <code>jemalloc</code> with <code>mimalloc</code></h3>
+<p>We replaced our memory allocators in this release.<br>
+This results in quicker builds <em>and</em> potentially improved performance due to faster allocations.</p>
+<h3>Updated documentation</h3>
+<p>Our documentation pages should be up-to-date now!</p>
+<h3>Automated release builds</h3>
+<p>We now offer release builds (courtesy of <code>cargo-dist</code>).<br>
+Meaning you can download pre-installed versions of Kitsune from our releases.</p>
+<p>We build binaries for:</p>
+<ul>
+<li>Windows (MSVC compiler)</li>
+<li>MacOS (Intel and Apple Silicon)</li>
+<li>Linux (glibc)</li>
+</ul>
+<hr>
+<p>This release has incompatible database changes to the previous release.
+Until we publish a full first alpha, we reserve us the right to continue making these kinds of breaking changes.</p>
+<hr>
+<h2>Install kitsune 0.0.1-pre.4</h2>
+<h3>Install prebuilt binaries via shell script</h3>
+<pre style="background-color:#263238;"><span style="color:#82aaff;">curl</span><span style="color:#89ddff;"> --</span><span style="color:#f78c6c;">proto </span><span style="color:#89ddff;">'</span><span style="color:#c3e88d;">=https</span><span style="color:#89ddff;">' --</span><span style="color:#f78c6c;">tlsv1</span><span style="color:#82aaff;">.2</span><span style="color:#89ddff;"> -</span><span style="color:#f78c6c;">LsSf</span><span style="color:#82aaff;"> https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-installer.sh </span><span style="color:#89ddff;">| </span><span style="color:#82aaff;">sh
+</span></pre>
+
+<h3>Install prebuilt binaries via powershell script</h3>
+<pre style="background-color:#263238;"><span style="color:#82aaff;">irm https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-installer.ps1 </span><span style="color:#89ddff;">| </span><span style="color:#82aaff;">iex
+</span></pre>
+
+<h2>Download kitsune 0.0.1-pre.4</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Platform</th>
+<th>Checksum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-aarch64-apple-darwin.tar.xz" rel="noopener noreferrer">kitsune-aarch64-apple-darwin.tar.xz</a></td>
+<td>macOS Apple Silicon</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-aarch64-apple-darwin.tar.xz.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-x86_64-apple-darwin.tar.xz" rel="noopener noreferrer">kitsune-x86_64-apple-darwin.tar.xz</a></td>
+<td>macOS Intel</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-x86_64-apple-darwin.tar.xz.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-x86_64-pc-windows-msvc.zip" rel="noopener noreferrer">kitsune-x86_64-pc-windows-msvc.zip</a></td>
+<td>Windows x64</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-x86_64-pc-windows-msvc.zip.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-x86_64-unknown-linux-gnu.tar.xz" rel="noopener noreferrer">kitsune-x86_64-unknown-linux-gnu.tar.xz</a></td>
+<td>Linux x64</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-x86_64-unknown-linux-gnu.tar.xz.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+</tbody>
+</table>
+<h1>kitsune-job-runner 0.0.1-pre.4</h1>
+<h2>Install kitsune-job-runner 0.0.1-pre.4</h2>
+<h3>Install prebuilt binaries via shell script</h3>
+<pre style="background-color:#263238;"><span style="color:#82aaff;">curl</span><span style="color:#89ddff;"> --</span><span style="color:#f78c6c;">proto </span><span style="color:#89ddff;">'</span><span style="color:#c3e88d;">=https</span><span style="color:#89ddff;">' --</span><span style="color:#f78c6c;">tlsv1</span><span style="color:#82aaff;">.2</span><span style="color:#89ddff;"> -</span><span style="color:#f78c6c;">LsSf</span><span style="color:#82aaff;"> https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-job-runner-installer.sh </span><span style="color:#89ddff;">| </span><span style="color:#82aaff;">sh
+</span></pre>
+
+<h3>Install prebuilt binaries via powershell script</h3>
+<pre style="background-color:#263238;"><span style="color:#82aaff;">irm https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-job-runner-installer.ps1 </span><span style="color:#89ddff;">| </span><span style="color:#82aaff;">iex
+</span></pre>
+
+<h2>Download kitsune-job-runner 0.0.1-pre.4</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Platform</th>
+<th>Checksum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-job-runner-aarch64-apple-darwin.tar.xz" rel="noopener noreferrer">kitsune-job-runner-aarch64-apple-darwin.tar.xz</a></td>
+<td>macOS Apple Silicon</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-job-runner-aarch64-apple-darwin.tar.xz.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-job-runner-x86_64-apple-darwin.tar.xz" rel="noopener noreferrer">kitsune-job-runner-x86_64-apple-darwin.tar.xz</a></td>
+<td>macOS Intel</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-job-runner-x86_64-apple-darwin.tar.xz.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-job-runner-x86_64-pc-windows-msvc.zip" rel="noopener noreferrer">kitsune-job-runner-x86_64-pc-windows-msvc.zip</a></td>
+<td>Windows x64</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-job-runner-x86_64-pc-windows-msvc.zip.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-job-runner-x86_64-unknown-linux-gnu.tar.xz" rel="noopener noreferrer">kitsune-job-runner-x86_64-unknown-linux-gnu.tar.xz</a></td>
+<td>Linux x64</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-job-runner-x86_64-unknown-linux-gnu.tar.xz.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+</tbody>
+</table>
+<h1>kitsune-cli 0.0.1-pre.4</h1>
+<h2>Install kitsune-cli 0.0.1-pre.4</h2>
+<h3>Install prebuilt binaries via shell script</h3>
+<pre style="background-color:#263238;"><span style="color:#82aaff;">curl</span><span style="color:#89ddff;"> --</span><span style="color:#f78c6c;">proto </span><span style="color:#89ddff;">'</span><span style="color:#c3e88d;">=https</span><span style="color:#89ddff;">' --</span><span style="color:#f78c6c;">tlsv1</span><span style="color:#82aaff;">.2</span><span style="color:#89ddff;"> -</span><span style="color:#f78c6c;">LsSf</span><span style="color:#82aaff;"> https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-cli-installer.sh </span><span style="color:#89ddff;">| </span><span style="color:#82aaff;">sh
+</span></pre>
+
+<h3>Install prebuilt binaries via powershell script</h3>
+<pre style="background-color:#263238;"><span style="color:#82aaff;">irm https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-cli-installer.ps1 </span><span style="color:#89ddff;">| </span><span style="color:#82aaff;">iex
+</span></pre>
+
+<h2>Download kitsune-cli 0.0.1-pre.4</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Platform</th>
+<th>Checksum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-cli-aarch64-apple-darwin.tar.xz" rel="noopener noreferrer">kitsune-cli-aarch64-apple-darwin.tar.xz</a></td>
+<td>macOS Apple Silicon</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-cli-aarch64-apple-darwin.tar.xz.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-cli-x86_64-apple-darwin.tar.xz" rel="noopener noreferrer">kitsune-cli-x86_64-apple-darwin.tar.xz</a></td>
+<td>macOS Intel</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-cli-x86_64-apple-darwin.tar.xz.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-cli-x86_64-pc-windows-msvc.zip" rel="noopener noreferrer">kitsune-cli-x86_64-pc-windows-msvc.zip</a></td>
+<td>Windows x64</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-cli-x86_64-pc-windows-msvc.zip.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-cli-x86_64-unknown-linux-gnu.tar.xz" rel="noopener noreferrer">kitsune-cli-x86_64-unknown-linux-gnu.tar.xz</a></td>
+<td>Linux x64</td>
+<td><a href="https://github.com/kitsune-soc/kitsune/releases/download/v0.0.1-pre.4/kitsune-cli-x86_64-unknown-linux-gnu.tar.xz.sha256" rel="noopener noreferrer">checksum</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Now follows the GitHub-generated changelog:</p>
+<h2>What's Changed</h2>
+<ul>
+<li>Add <code>xtask</code> project for automation by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/326" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/326</a></li>
+<li>Separate xtask from workspace by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/327" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/327</a></li>
+<li>Add notifications by @Zeerooth in <a href="https://github.com/kitsune-soc/kitsune/pull/328" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/328</a></li>
+<li>Reduce dependency count by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/329" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/329</a></li>
+<li>Rewrite <code>post-processor</code> based on <code>logos</code> by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/333" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/333</a></li>
+<li>Increase Tokio worker stack size to 4MiB by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/338" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/338</a></li>
+<li>Fix compile errors from security patch by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/339" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/339</a></li>
+<li>Specify a formatter for 'nix fmt' by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/340" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/340</a></li>
+<li>Add cargo-audit check by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/341" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/341</a></li>
+<li>Upgrade dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/335" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/335</a></li>
+<li>Update activity for posts by @Zeerooth in <a href="https://github.com/kitsune-soc/kitsune/pull/337" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/337</a></li>
+<li>ci: Remove <code>needs: fmt</code> requirements by @tesaguri in <a href="https://github.com/kitsune-soc/kitsune/pull/344" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/344</a></li>
+<li>Restructure to have <code>kitsune-core</code> crate by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/343" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/343</a></li>
+<li>Extend <code>typed-builder</code> usage by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/346" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/346</a></li>
+<li>Dedicated job runner by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/347" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/347</a></li>
+<li>Remove precommit hook by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/348" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/348</a></li>
+<li>Replace jemalloc with mimalloc by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/350" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/350</a></li>
+<li>Upgrade dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/351" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/351</a></li>
+<li>Bump graphql from 16.8.0 to 16.8.1 in /kitsune-fe by @dependabot in <a href="https://github.com/kitsune-soc/kitsune/pull/353" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/353</a></li>
+<li>Remove exif info from image uploads by @Zeerooth in <a href="https://github.com/kitsune-soc/kitsune/pull/352" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/352</a></li>
+<li>Resolve canonical WebFinger subjects of remote actors by @tesaguri in <a href="https://github.com/kitsune-soc/kitsune/pull/349" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/349</a></li>
+<li>Upgrade dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/355" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/355</a></li>
+<li>Correct retry logic by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/357" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/357</a></li>
+<li>Remove <code>kitsune-search-server</code> by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/359" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/359</a></li>
+<li>Add <code>Timestamp</code> swagger type by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/361" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/361</a></li>
+<li>Remove <code>diesel_migrations_async</code> by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/362" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/362</a></li>
+<li>More swagger fixes by @Zeerooth in <a href="https://github.com/kitsune-soc/kitsune/pull/363" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/363</a></li>
+<li>Update dependencies (and use <code>redis</code> fork) by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/364" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/364</a></li>
+<li>See who boosted/favourited a post in mastodon API by @Zeerooth in <a href="https://github.com/kitsune-soc/kitsune/pull/367" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/367</a></li>
+<li>Small optimizations by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/369" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/369</a></li>
+<li>Replace <code>aws-sdk-s3</code> with <code>rusty-s3</code> by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/373" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/373</a></li>
+<li>Use <code>write!</code> macro instead of separate function calls by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/374" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/374</a></li>
+<li>Separate target directory for rust-analyzer by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/375" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/375</a></li>
+<li>Remove the /oauth/token endpoint from the OpenAPI scheme by @Zeerooth in <a href="https://github.com/kitsune-soc/kitsune/pull/376" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/376</a></li>
+<li>Use more <code>typed-builder</code> by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/378" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/378</a></li>
+<li>Basic UI functionality by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/365" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/365</a></li>
+<li>Revamp observability by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/381" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/381</a></li>
+<li>Add <code>kitsune-blocking</code> crate by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/382" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/382</a></li>
+<li>Compile time optimizations by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/379" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/379</a></li>
+<li>Patch <code>isolang</code> dependency by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/383" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/383</a></li>
+<li>OpenTelemetry configurability by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/384" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/384</a></li>
+<li>Update frontend dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/385" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/385</a></li>
+<li>Add <code>cargo-dist</code> by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/386" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/386</a></li>
+<li>Fix <code>cargo-dist</code> builds by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/387" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/387</a></li>
+</ul>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/kitsune-soc/kitsune/compare/v0.0.1-pre.3...v0.0.1-pre.4" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/compare/v0.0.1-pre.3...v0.0.1-pre.4</a></p>
+
+  </div>
+</section>
+    </div>
+  </div>
+
+        </main>
+      </div>
+
+      <footer>
+        
+          <a href="https://github.com/kitsune-soc/kitsune"><div class="github-icon" aria-hidden="true"></div></a>
+        
+        <span>
+          Kitsune, AGPL-3.0-or-later
+        </span>
+      </footer>
+    </div>
+
+    
+    
+
+    
+  </body>
+</html>

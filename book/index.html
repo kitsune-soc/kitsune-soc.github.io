@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js oranda-dark">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Introduction - Kitsune documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="oranda-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "oranda-dark" : "oranda-dark";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('orandamdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('orandamdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('orandamdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('oranda-dark')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html" class="active"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Running</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="running/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="running/basic-configuration.html"><strong aria-hidden="true">2.2.</strong> Basic configuration</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Configuring</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="configuring/cache.html"><strong aria-hidden="true">3.1.</strong> Cache</a></li><li class="chapter-item expanded "><a href="configuring/captcha.html"><strong aria-hidden="true">3.2.</strong> Captcha</a></li><li class="chapter-item expanded "><a href="configuring/clacks-overhead.html"><strong aria-hidden="true">3.3.</strong> Clacks Overhead</a></li><li class="chapter-item expanded "><a href="configuring/database.html"><strong aria-hidden="true">3.4.</strong> Database</a></li><li class="chapter-item expanded "><a href="configuring/deny-brave-browsers.html"><strong aria-hidden="true">3.5.</strong> Deny Brave Browsers</a></li><li class="chapter-item expanded "><a href="configuring/email.html"><strong aria-hidden="true">3.6.</strong> Emailing</a></li><li class="chapter-item expanded "><a href="configuring/federation-filter.html"><strong aria-hidden="true">3.7.</strong> Federation Filter</a></li><li class="chapter-item expanded "><a href="configuring/instance.html"><strong aria-hidden="true">3.8.</strong> Instance</a></li><li class="chapter-item expanded "><a href="configuring/job-scheduler.html"><strong aria-hidden="true">3.9.</strong> Job Scheduler</a></li><li class="chapter-item expanded "><a href="configuring/language-detection.html"><strong aria-hidden="true">3.10.</strong> Language Detection</a></li><li class="chapter-item expanded "><a href="configuring/link-embedding.html"><strong aria-hidden="true">3.11.</strong> Link embedding</a></li><li class="chapter-item expanded "><a href="configuring/mrf.html"><strong aria-hidden="true">3.12.</strong> MRF (Message Rewrite Facility)</a></li><li class="chapter-item expanded "><a href="configuring/messaging.html"><strong aria-hidden="true">3.13.</strong> Messaging</a></li><li class="chapter-item expanded "><a href="configuring/oidc.html"><strong aria-hidden="true">3.14.</strong> OIDC (OpenID Connect)</a></li><li class="chapter-item expanded "><a href="configuring/opentelemetry.html"><strong aria-hidden="true">3.15.</strong> OpenTelemetry</a></li><li class="chapter-item expanded "><a href="configuring/search.html"><strong aria-hidden="true">3.16.</strong> Search</a></li><li class="chapter-item expanded "><a href="configuring/storage.html"><strong aria-hidden="true">3.17.</strong> Storage</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Specification</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="spec/http-signatures.html"><strong aria-hidden="true">4.1.</strong> HTTP signatures</a></li><li class="chapter-item expanded "><a href="spec/webfinger.html"><strong aria-hidden="true">4.2.</strong> Webfinger</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="oranda-dark">Hacker</button></li>
+
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Kitsune documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>Kitsune is a decentralised microblogging platform built on the ActivityPub protocol.<br />
+This means that anyone can run their own Kitsune on their own hardware and seamlessly interact with each other.</p>
+<p>Of course you can also sign up on an existing instance to try it out, no strings attached.<br />
+If you are interested in running your own instance, head over to our installation guide.</p>
+<h2 id="chat"><a class="header" href="#chat">Chat</a></h2>
+<p>Feel free to join our chat if you have any problems or if you want to contribute.<br />
+We have channels on Matrix and Discord which are bridged with each other, so join whichever you are more comfortable with.</p>
+<p><a href="https://matrix.to/#/#kitsune-space:matrix.org"><img src="https://img.shields.io/matrix/kitsune-space:matrix.org?label=Matrix%20chat&amp;style=for-the-badge" alt="Matrix" /></a>
+<a href="https://discord.gg/YGAtX7nfrG"><img src="https://img.shields.io/discord/1118538521423138856?label=Discord%20chat&amp;style=for-the-badge" alt="Discord" /></a></p>
+<p>(The side-panel links to the Matrix room since Matrix is the more open and privacy-respecting solution out of the both)</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next" href="running/installation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next" href="running/installation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
