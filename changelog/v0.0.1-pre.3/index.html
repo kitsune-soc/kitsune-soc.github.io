@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" id="oranda" class="hacker">
+  <head>
+    <title>Kitsune</title>
+    
+    
+      <link rel="icon" href="/favicon.ico" />
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kitsune" />
+    
+    
+    
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+    <link rel="stylesheet" href="/oranda-v0.6.1.css" />
+    
+      <link rel="stylesheet" href="/custom.css" />
+    
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-body">
+        
+          <div class="repo_banner">
+            <a href="https://github.com/kitsune-soc/kitsune">
+              <div class="github-icon" aria-hidden="true"></div>
+              Check out our GitHub!
+            </a>
+          </div>
+        
+
+        <main>
+          <header>
+            
+            <h1 class="title">Kitsune</h1>
+            
+  <nav class="nav">
+    <ul>
+      <li><a href="/">Home</a></li>
+
+      
+
+      
+        <li><a href="/artifacts/">Install</a></li>
+      
+
+      
+        <li><a href="/book/">Docs</a></li>
+      
+
+      
+        <li><a href="/funding/">Funding</a></li>
+      
+
+      
+        <li><a href="/changelog/">Changelog</a></li>
+      
+    </ul>
+  </nav>
+
+          </header>
+
+          
+  <div>
+    <h1>v0.0.1-pre.3: Breaking release conventions</h1>
+    <div class="releases-body">
+      
+      
+      <section class="release pre-release ">
+  
+  <div class="release-info">
+    <span class="flex items-center gap-2">
+      <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>
+    <path stroke-linecap='round' stroke-linejoin='round' d='M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z' />
+    <path stroke-linecap='round' stroke-linejoin='round' d='M6 6h.008v.008H6V6z' /></svg>
+      v0.0.1-pre.3
+    </span>
+    <span class="flex items-center gap-2">
+      
+        <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'><path stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5' /></svg>
+        Aug 28 2023 at 09:36 UTC
+      
+    </span>
+  </div>
+  <div class="release-body">
+    <p>What? Another release after two weeks? Yes!</p>
+<p>This time we don't just wait two months, we throw out another preview release after two weeks!<br>
+Mainly because I really got excited about some of the big things we added, so I wanted to push that out.
+<sub>We also have a security fix in this release</sub></p>
+<p>Feel free to join one of the <a href="https://github.com/kitsune-soc/kitsune#chat" rel="noopener noreferrer">chat options</a> to chat with us!<br>
+Both of them are connected via a bridge, so it doesn't matter which one you join</p>
+<h2>Security fixes</h2>
+<p>We had a bug that enabled attackers to use a maliciously crafted activity to</p>
+<ul>
+<li>exhaust the connection pool if it was configured with less than 50 connections</li>
+<li>crash the server with an stack overflow</li>
+</ul>
+<p>These issues have been solved with this release. We reduced the maximum recursion depth for thread fetching to 30 and changed the internals to handle database connections with more care.</p>
+<p>Thanks @tesaguri for reporting this issue and helping with the testing and fixing!</p>
+<h2>Highlights</h2>
+<h3>Language detection</h3>
+<p>As many of you know, in Mastodon you can tag your posts with a language to assist with translation and such, but what if these tags are wrong?<br>
+Well, we had the same concerns for Kitsune, so we came up with a solution: N-gram-based language detection models!</p>
+<p>With posts over 100 characters, the language detection we utilise can pretty confidently tell what language you are posting in, and will tag the language accordingly.<br>
+The choice of your client will still have precedence, so if your client sends us a language, we won't even attempt to guess the language.</p>
+<p>We think that this is a good way forward, to have more and reliable language tagging for posts</p>
+<h3>Better SQL full-text search</h3>
+<p>This is linked to the previous point! We now do language-specific tokenization for posts. Meaning your English posts will be tokenized differently from your German posts and those are tokenized differently from your Korean posts, and so on!</p>
+<p>To support more languages, your instance admin needs to install the tokenizer in their PostgreSQL database. No further configuration needed!<br>
+Kitsune will automatically detect the newly installed tokenizer on start-up and will start using it for new posts.</p>
+<p><strong>Note</strong>: This automatic tokenizer detection assumes the name of the tokenizer's <code>REGCONFIG</code> is equal to the english name of the language. This holds true for most languages.</p>
+<h3>Webfinger domain support</h3>
+<p>(Thanks @tesaguri for adding this feature!)</p>
+<p>You can now specify a <code>webfinger-domain</code> value in your configuration, making Mastodon refer to your instance by, for example, <code>example.org</code> instead of <code>fedi.example.org</code>.</p>
+<p>Kitsune does not yet respect these webfinger domains, this is planned however and tracked in #285</p>
+<h3>Updating posts</h3>
+<p>(Thanks @Zeerooth for adding this feature!)</p>
+<p>You can now edit your posts! Made a typo or wanted to word something differently? You can now just use the edit feature of the Mastodon client!</p>
+<h3>Reposts</h3>
+<p>(Thanks @Zeerooth for adding this feature!)</p>
+<p>You can now repost posts on Kitsune! This feature has been missing for a while and is now here!</p>
+<h3>Captchas for sign-up</h3>
+<p>(Thanks @Zeerooth for adding this feature!)</p>
+<p>You can now choose between hCaptcha and mCaptcha as backends for a captcha service! This will help prevent issues with spam accounts and lessen moderation burden.</p>
+<p>Note that these two options are fully accessible. Both of these options support navigation via your keyboard and are accessible to vision-impaired users.</p>
+<ul>
+<li>hCaptcha offers a so-called "accessibility cookie" where you can contact their support to give your browser a cookie that makes it automatically by-pass the verification</li>
+<li>mCaptcha is fully built around proof-of-work, meaning there will be no "choose a picture" challenges. Your browser will simply solve a mathematical puzzle and send us the solution.</li>
+</ul>
+<p>If you want an additional Captcha service that isn't covered right now, feel free to open an issue!</p>
+<h2>Smaller changes</h2>
+<ul>
+<li>Character limits are now correctly enforced</li>
+<li>Test coverage has been extended a bit (thanks @tesaguri)</li>
+<li>Tests are now mocked, enabling reproducible tests in offline environments (thanks @tesaguri)</li>
+</ul>
+<hr>
+<p>This release has incompatible database changes to the previous release.
+Until we publish a full first alpha, we reserve us the right to continue making these kinds of breaking changes.</p>
+<hr>
+<p>Now follows the GitHub-generated changelog:</p>
+<h2>What's Changed</h2>
+<ul>
+<li>test: Use mocked HTTP clients by @tesaguri in <a href="https://github.com/kitsune-soc/kitsune/pull/296" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/296</a></li>
+<li>Language detection for posts by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/293" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/293</a></li>
+<li>Add <code>webfinger-domain</code> configuration by @tesaguri in <a href="https://github.com/kitsune-soc/kitsune/pull/297" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/297</a></li>
+<li>Add SECURITY.md by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/300" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/300</a></li>
+<li>Add captcha by @Zeerooth in <a href="https://github.com/kitsune-soc/kitsune/pull/299" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/299</a></li>
+<li>Bump rustls-webpki from 0.100.1 to 0.100.2 by @dependabot in <a href="https://github.com/kitsune-soc/kitsune/pull/301" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/301</a></li>
+<li>Small changes and updates by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/302" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/302</a></li>
+<li>Wrapper around the Postgres connection pool by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/303" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/303</a></li>
+<li>Add a test for fetching infinitely long reply chains by @tesaguri in <a href="https://github.com/kitsune-soc/kitsune/pull/305" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/305</a></li>
+<li>Update, boost and unboost a status using mastodon api by @Zeerooth in <a href="https://github.com/kitsune-soc/kitsune/pull/306" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/306</a></li>
+<li>Use <code>garde</code> for validation by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/311" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/311</a></li>
+<li>Add character limit tests by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/314" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/314</a></li>
+<li>Add post source functionality by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/315" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/315</a></li>
+<li>Fix transaction state panic by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/316" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/316</a></li>
+<li>Add code of conduct by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/317" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/317</a></li>
+<li>Fix issue #319 by @perillamint in <a href="https://github.com/kitsune-soc/kitsune/pull/320" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/320</a></li>
+<li>Update dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/321" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/321</a></li>
+<li>Use <code>devenv</code> for development shells by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/324" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/324</a></li>
+<li>Bump version to v0.0.1-pre.3 by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/325" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/325</a></li>
+</ul>
+<h2>New Contributors</h2>
+<ul>
+<li>@tesaguri made their first contribution in <a href="https://github.com/kitsune-soc/kitsune/pull/296" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/296</a></li>
+</ul>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/kitsune-soc/kitsune/compare/v0.0.1-pre.2...v0.0.1-pre.3" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/compare/v0.0.1-pre.2...v0.0.1-pre.3</a></p>
+
+  </div>
+</section>
+    </div>
+  </div>
+
+        </main>
+      </div>
+
+      <footer>
+        
+          <a href="https://github.com/kitsune-soc/kitsune"><div class="github-icon" aria-hidden="true"></div></a>
+        
+        <span>
+          Kitsune, AGPL-3.0-or-later
+        </span>
+      </footer>
+    </div>
+
+    
+    
+
+    
+  </body>
+</html>

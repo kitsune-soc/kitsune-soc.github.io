@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" id="oranda" class="hacker">
+  <head>
+    <title>Kitsune</title>
+    
+    
+      <link rel="icon" href="/favicon.ico" />
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kitsune" />
+    
+    
+    
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+    <link rel="stylesheet" href="/oranda-v0.6.1.css" />
+    
+      <link rel="stylesheet" href="/custom.css" />
+    
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-body">
+        
+          <div class="repo_banner">
+            <a href="https://github.com/kitsune-soc/kitsune">
+              <div class="github-icon" aria-hidden="true"></div>
+              Check out our GitHub!
+            </a>
+          </div>
+        
+
+        <main>
+          <header>
+            
+            <h1 class="title">Kitsune</h1>
+            
+  <nav class="nav">
+    <ul>
+      <li><a href="/">Home</a></li>
+
+      
+
+      
+        <li><a href="/artifacts/">Install</a></li>
+      
+
+      
+        <li><a href="/book/">Docs</a></li>
+      
+
+      
+        <li><a href="/funding/">Funding</a></li>
+      
+
+      
+        <li><a href="/changelog/">Changelog</a></li>
+      
+    </ul>
+  </nav>
+
+          </header>
+
+          
+  <div>
+    <h1>v0.0.1-pre.2: Yet another release</h1>
+    <div class="releases-body">
+      
+      
+      <section class="release pre-release ">
+  
+  <div class="release-info">
+    <span class="flex items-center gap-2">
+      <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>
+    <path stroke-linecap='round' stroke-linejoin='round' d='M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z' />
+    <path stroke-linecap='round' stroke-linejoin='round' d='M6 6h.008v.008H6V6z' /></svg>
+      v0.0.1-pre.2
+    </span>
+    <span class="flex items-center gap-2">
+      
+        <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'><path stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5' /></svg>
+        Aug 13 2023 at 15:34 UTC
+      
+    </span>
+  </div>
+  <div class="release-body">
+    <p>Another release without that many <em>big</em> changes. I had some personal stuff to get through over last weeks.<br>
+This release was made to have one clean cut-off point to not forget about things that happened and to keep the changelog somewhat manageable.<br>
+<sub>Also I wanted to keep the two month release "schedule"</sub></p>
+<p>Feel free to join one of the <a href="https://github.com/kitsune-soc/kitsune#chat" rel="noopener noreferrer">chat options</a> to chat with us!<br>
+Both of them are connected via a bridge, so it doesn't matter which one you join</p>
+<h2>Highlights</h2>
+<h3>Switch from Dhall to TOML</h3>
+<p>We are now using TOML for our configurations.</p>
+<p>Dhall had issues with bad error messages, a more unfamiliar syntax for a lot of people, and the requirement to manually write types ourselves.<br>
+TOML, on the other hand, is a simple configuration format that is well-known and ubiquitous.</p>
+<p>Our documentation isn't updated yet, we are tracking it in #281</p>
+<h3>More general ActivityPub federation</h3>
+<p>Kitsune now has basic federation with non-microblogging services such as Lemmy and PeerTube.<br>
+This federation includes:</p>
+<ul>
+<li>Loading profiles</li>
+<li>Loading videos and longer-form articles</li>
+<li>Parsing post bodies as Markdown, when requested</li>
+<li>Some special-case formatting for articles to link back to the source (similar to what Akkoma does)</li>
+</ul>
+<h3>Link previews</h3>
+<p>You know these nice little cards Mastodon has? Where it shows you an image and a bit about the link that was just posted?<br>
+Kitsune can do that, too!</p>
+<p>Thanks to the generosity of @novacrazy, we now make use of Lantern Chat's embed service for fetching link metadata.<br>
+The service can be found here: <a href="https://github.com/Lantern-chat/embed-service" rel="noopener noreferrer">https://github.com/Lantern-chat/embed-service</a></p>
+<h3>New job scheduler</h3>
+<p>This release includes a new job scheduler: Athena.</p>
+<p>The scheduler aims to improve issues with contention and database utilization our old approach had.<br>
+Our old approach used to poll the database every few seconds for new jobs and lock rows exclusively.</p>
+<p>Since we also ordered the jobs by a date key, this meant that locked rows would make each job runner wait.</p>
+<p>We resolved this by outsourcing the job queuing to Redis but keeping the context in the database for latency reasons.<br>
+Redis Streams and Lua scripts are used to ensure atomicity and that we don't accidentally lose jobs, even with catastrophic failures, such as crashes.</p>
+<p>This means that we require a Redis installation though</p>
+<h3>Email verification</h3>
+<p>You can now require email verification for new accounts by configuring an email server.</p>
+<p>These Emails are somewhat nice looking HTML emails with a plain text fallback.<br>
+We use <code>mrml</code> to not have to deal with the frankly ancient HTML you'd have to write for Email clients.</p>
+<h3>Improved OAuth2 implementation</h3>
+<p>Previously we rolled our own OAuth2 logic. The logic was not entirely perfect.<br>
+With this release we ported Kitsune to the <code>oxide-auth</code> library, helping us provide standards-compliant OAuth2 flows.</p>
+<p><strong>Note</strong>: We did implement a hack to enable JSON-encoded bodies for OAuth endpoints, even though that is technically against the standard, since a lot of Mastodon clients did that.</p>
+<h3>Docker images and Docker Compose deployment</h3>
+<p>We used to have Docker images and a Docker Compose file, these weren't maintained and not kept up-to-date with newer changes.<br>
+Thanks to @Zeerooth all the Docker files are now up-to-date and use <code>cargo-chef</code> for improved build speed utilizing Docker's layer caching.</p>
+<h2>Smaller changes that might be of note</h2>
+<h3>UI improvements</h3>
+<p>The UI has progressed. Even if not immediately visible, we now have:</p>
+<ul>
+<li>Working authentication</li>
+<li>a 404 page (thanks @Zeerooth)</li>
+<li>Nicer registration forms</li>
+<li>A new, smaller GraphQL client</li>
+</ul>
+<h3>In-memory cache changes</h3>
+<p>@tesaguri recommended switching over our primitive self-rolled in-memory cache with a more sophisticated library.</p>
+<p>We chose <code>moka</code> which is giving us simplified internals and less faulty key-evictions, meaning Kitsune should be that little bit faster when using the in-memory cache.</p>
+<h3>Kitsune deployable via Nix</h3>
+<p>@Nemo157 updated our Nix flake, so you can now deploy Kitsune as a Nix service via the flake.<br>
+See #270 for an example.</p>
+<h3>General performance improvements</h3>
+<p>We make use of <code>smol_str</code> string inlining and SIMD-accelerated libraries wherever possible.<br>
+Our JSON parsing is done via <code>simd-json</code>, UUIDs are parsed via <code>uuid-simd</code>, Base64 is handled via <code>base64-simd</code>, and Hex encoding is powered by <code>hex-simd</code>.</p>
+<p>The following SIMD libraries we use are all maintained by a single person, @nugine, big props to him:</p>
+<ul>
+<li><code>base64-simd</code></li>
+<li><code>hex-simd</code></li>
+<li><code>uuid-simd</code></li>
+</ul>
+<hr>
+<p>This release has incompatible configuration and database changes to the previous release.
+Until we publish a full first alpha, we reserve us the right to continue making these kinds of breaking changes.</p>
+<hr>
+<p>Now follows the GitHub-generated changelog:</p>
+<h2>What's Changed</h2>
+<ul>
+<li>Fix URL parsing by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/235" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/235</a></li>
+<li>Update dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/236" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/236</a></li>
+<li>Minor size adjustments by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/237" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/237</a></li>
+<li>Better ActivityPub compatibility by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/238" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/238</a></li>
+<li>Split Kitsune into more subcrates by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/239" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/239</a></li>
+<li>Bump vite from 4.2.1 to 4.2.3 in /kitsune-fe by @dependabot in <a href="https://github.com/kitsune-soc/kitsune/pull/240" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/240</a></li>
+<li>Update <code>diesel_migrations_async</code> to newest git revision by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/241" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/241</a></li>
+<li>Add link to a Discord server by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/243" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/243</a></li>
+<li>Improve error messages by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/245" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/245</a></li>
+<li>Ignore duplicate mentions by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/246" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/246</a></li>
+<li>Port OAuth2 endpoints to <code>oxide-auth</code> by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/242" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/242</a></li>
+<li>Add link previews by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/247" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/247</a></li>
+<li>Skip <code>serde_json::Value</code> step by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/249" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/249</a></li>
+<li>Small optimisations by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/250" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/250</a></li>
+<li>Bump semver from 7.3.8 to 7.5.3 in /kitsune-fe by @dependabot in <a href="https://github.com/kitsune-soc/kitsune/pull/255" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/255</a></li>
+<li>Improved job scheduler by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/254" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/254</a></li>
+<li>Add <code>target-cpu=native</code> to the RUSTFLAGS by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/259" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/259</a></li>
+<li>Add email verification by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/257" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/257</a></li>
+<li>Add middleware for handling JSON to OAuth endpoints by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/261" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/261</a></li>
+<li>Add STARTTLS option to configuration by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/262" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/262</a></li>
+<li>Added service example file by @SlimeyIceCream in <a href="https://github.com/kitsune-soc/kitsune/pull/266" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/266</a></li>
+<li>Add caddy example file. by @SlimeyIceCream in <a href="https://github.com/kitsune-soc/kitsune/pull/268" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/268</a></li>
+<li>Replace Dhall with TOML by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/271" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/271</a></li>
+<li>Add nixos service module to the flake by @Nemo157 in <a href="https://github.com/kitsune-soc/kitsune/pull/270" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/270</a></li>
+<li>Improve error handling by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/272" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/272</a></li>
+<li>Do not assume CPU support for aes instructions by @Houkime in <a href="https://github.com/kitsune-soc/kitsune/pull/274" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/274</a></li>
+<li>Build for x86-64-v3 in CI by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/275" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/275</a></li>
+<li>Bump word-wrap from 1.2.3 to 1.2.4 in /kitsune-fe by @dependabot in <a href="https://github.com/kitsune-soc/kitsune/pull/276" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/276</a></li>
+<li>Improve Nix in CI by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/277" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/277</a></li>
+<li>GraphQL improvements by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/273" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/273</a></li>
+<li>Layered docker images and improved docker-compose deployment by @Zeerooth in <a href="https://github.com/kitsune-soc/kitsune/pull/282" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/282</a></li>
+<li>Some UI progress by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/279" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/279</a></li>
+<li>WIP: make dev shell self-contained by @Houkime in <a href="https://github.com/kitsune-soc/kitsune/pull/278" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/278</a></li>
+<li>Validate passwords with zxcvbn in-browser by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/286" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/286</a></li>
+<li>Port frontend from <code>@vue/apollo-composable</code> to <code>@urql/vue</code> by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/287" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/287</a></li>
+<li>Autogenerate types for GraphQL queries by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/288" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/288</a></li>
+<li>Remove errornous type annotation by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/289" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/289</a></li>
+<li>Update dependencies by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/290" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/290</a></li>
+<li>Implement follow requests by @Zeerooth in <a href="https://github.com/kitsune-soc/kitsune/pull/283" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/283</a></li>
+<li>Update the in-memory cache to use <code>moka</code> by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/291" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/291</a></li>
+<li>Bump version to v0.0.1-pre.2 by @aumetra in <a href="https://github.com/kitsune-soc/kitsune/pull/292" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/292</a></li>
+</ul>
+<h2>New Contributors</h2>
+<ul>
+<li>@SlimeyIceCream made their first contribution in <a href="https://github.com/kitsune-soc/kitsune/pull/266" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/266</a></li>
+<li>@Nemo157 made their first contribution in <a href="https://github.com/kitsune-soc/kitsune/pull/270" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/270</a></li>
+<li>@Houkime made their first contribution in <a href="https://github.com/kitsune-soc/kitsune/pull/274" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/274</a></li>
+<li>@Zeerooth made their first contribution in <a href="https://github.com/kitsune-soc/kitsune/pull/282" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/pull/282</a></li>
+</ul>
+<p><strong>Full Changelog</strong>: <a href="https://github.com/kitsune-soc/kitsune/compare/v0.0.1-pre.1...v0.0.1-pre.2" rel="noopener noreferrer">https://github.com/kitsune-soc/kitsune/compare/v0.0.1-pre.1...v0.0.1-pre.2</a></p>
+
+  </div>
+</section>
+    </div>
+  </div>
+
+        </main>
+      </div>
+
+      <footer>
+        
+          <a href="https://github.com/kitsune-soc/kitsune"><div class="github-icon" aria-hidden="true"></div></a>
+        
+        <span>
+          Kitsune, AGPL-3.0-or-later
+        </span>
+      </footer>
+    </div>
+
+    
+    
+
+    
+  </body>
+</html>
